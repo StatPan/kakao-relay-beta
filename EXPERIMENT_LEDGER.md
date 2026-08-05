@@ -53,6 +53,28 @@ not sell access, accept reservations, or create an entitlement. Direct revenue,
 voluntary support revenue, and paid-pilot revenue are all **0 KRW** until a
 real receiving path exists and a voluntary payment is actually received.
 
+## Owned-channel qualification
+
+**Reviewed: 2026-08-05 KST.** Owning a channel does not by itself make it an
+acquisition channel for this experiment.
+
+| Owner-controlled surface | Decision | Reason and boundary |
+| --- | --- | --- |
+| `statpan.com` portfolio card and boundary explainer | Eligible and live | The existing card and explainer link to the public beta while repeating that this is not an official Kakao integration, a remote-reply service, or an installation promise. |
+| min-ty commercial blog | Excluded now | A phrase sample for Kakao notification delivery to Telegram, Discord, and webhooks was dominated by business 알림톡, generic notification support, or the reverse direction. It did not establish a source-backed, standalone reader task for this customer-owned, one-way relay. |
+
+No link, post, CTA, tracking, advertising, or affiliate placement will be
+added to min-ty for this experiment. Such a promotion could imply product
+availability or turn an independent commercial-information channel into a
+thin acquisition surface. It would also mix min-ty's separate content-quality
+gate with this product-demand test.
+
+This qualification does not call the sampled result market demand or market
+absence. Reconsider min-ty only when it has a separate topic brief, research,
+and publishing review for a standalone reader task, and this product's scope
+is then verified. Until then, min-ty interactions do not count as evidence for
+this experiment.
+
 ## What counts as evidence
 
 | Signal | Canonical source | Valid when | Do not count when |
