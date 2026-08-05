@@ -81,6 +81,7 @@ this experiment.
 | --- | --- | --- | --- |
 | Open structured-demand candidate | Daily aggregate snapshot of public GitHub Issue Form entries labelled `type:story` | An open non-PR Issue currently has the label | Treating this count as valid demand, a count of distinct people, or a review of form content |
 | Valid structured demand | Public GitHub Issue Form labelled `type:story`, manually reviewed at the decision point | A distinct public author submits all required destination, signed-APK willingness, and non-binding payment-model and price selections without sensitive data | Empty, duplicate, spam, test, or sensitive-data-containing submission |
+| Discovery attribution | Optional closed-choice `discovery_channel` selection in the public Interest Form | Aggregate selected-channel counts are recorded only after the same privacy review | Treating a selection, missing selection, page visit, or repository view as conversion, valid demand, or market demand |
 | Product question or use case | [Public Q&A](https://github.com/StatPan/kakao-relay-beta/discussions/12) | A non-seed participant asks a scope/use-case question without personal or credential data | The seeded owner post, a duplicate, or a post containing personal or secret data |
 | Repository discovery | GitHub traffic API | Reported separately as repository views/clones and referrers | Treating it as a GitHub Pages or `statpan.com` page-view count |
 | Revenue | Receiving-account transaction receipt | A real voluntary support or paid-pilot payment is received after a lawful receiving path is configured | A price-range selection, pledge, or discussion comment |
@@ -108,6 +109,11 @@ valid-demand definition above. Record only the aggregate result and exclusion
 reason category in the final evidence; do not copy participant names, Issue
 titles or bodies, contact details, message data, endpoints, tokens, or secrets
 into the ledger.
+
+`discovery_channel` is optional and uses closed choices only. It is an
+attribution diagnostic for the next channel decision, not a requirement for
+valid demand and not a tracking mechanism. Do not add free-text attribution,
+cookies, a tracking script, or analytics-account changes for this experiment.
 
 The form separates one-time purchase ranges from monthly ranges. This does not
 offer either model or imply that a recurring service will exist: a monthly
