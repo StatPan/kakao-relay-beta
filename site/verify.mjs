@@ -16,6 +16,8 @@ const required = [
   "카카오톡 공식 API 또는 공식 봇인 척하지 않습니다.",
   "카카오 ID, 기기 일련번호, 알림·대화 내용",
   "원격·보조 전송은 제공하지 않습니다.",
+  "수동 설치 의향, 비구속적 가격 범위만 골라 알려 주세요.",
+  "가격 선택은 결제·예약이 아닌 공개 의견",
   "후원은 기능, 베타 접근, 지원 우선순위 또는 라이선스를 제공하지 않습니다.",
   "issues/new?template=beta-interest.yml",
 ];
@@ -34,7 +36,16 @@ if (!robots.includes(`Sitemap: ${publicUrl}sitemap.xml`)) throw new Error("robot
 if (!sitemap.includes(`<loc>${publicUrl}</loc>`)) throw new Error("sitemap.xml must point at the public page.");
 if (!config.includes('url: ""')) throw new Error("Support must remain disabled until a receiving account is configured.");
 if (!script.includes('url.protocol !== "https:"')) throw new Error("Support configuration must reject non-HTTPS links.");
-for (const forbiddenDataNotice of ["카카오 ID, 전화번호, 이메일", "webhook URL, 토큰, 비밀값", "공개 GitHub Issue"]) {
-  if (!interestForm.includes(forbiddenDataNotice)) throw new Error(`Missing interest-form privacy boundary: ${forbiddenDataNotice}`);
+for (const requiredFormBoundary of [
+  "카카오 ID, 전화번호, 이메일",
+  "webhook URL, 토큰, 비밀값",
+  "공개 GitHub Issue",
+  "id: installation_willingness",
+  "id: price_reaction",
+  "결제나 예약이 아닌 공개·비구속적 의견입니다.",
+]) {
+  if (!interestForm.includes(requiredFormBoundary)) {
+    throw new Error(`Missing interest-form privacy or demand boundary: ${requiredFormBoundary}`);
+  }
 }
 console.log(`verified ${resolve(root.pathname, "index.html")}`);
