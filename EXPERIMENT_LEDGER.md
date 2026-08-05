@@ -46,6 +46,10 @@ new paid spend, stop that step before the charge and record a new decision.
 The artifact excludes participant names, titles, bodies, contact details,
 message data, endpoints, tokens, and secrets.
 
+The final manual procedure is in [the evidence review protocol](EVIDENCE_REVIEW_PROTOCOL.md).
+It separates aggregate candidate liveness from valid demand, price response,
+and revenue evidence.
+
 ## Public state and revenue
 
 The public page, structured interest form, and public Q&A are live. They do
