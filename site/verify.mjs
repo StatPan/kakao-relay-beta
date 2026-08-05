@@ -19,17 +19,17 @@ const guideUrl = `${publicUrl}guide.html`;
 const useCasesUrl = `${publicUrl}use-cases.html`;
 
 const required = [
-  "무료 베타 관심 등록",
+  "관심 남기기",
   "카카오톡 공식 API 또는 공식 봇인 척하지 않습니다.",
   "카카오 ID, 기기 일련번호, 알림·대화 내용",
-  "원격·보조 전송은 제공하지 않습니다.",
-  "공개 가능한 사용처 범주, 수동 설치 의향, 비구속적 가격 범위만 골라 알려 주세요.",
+  "공개 베타에서 원격·보조 전송 기능을 제공하지 않습니다.",
+  "공개 가능한 사용처 범주, 수동 설치 의향, 비구속적 가격 범위만 골라 주세요.",
   "가격 선택은 결제·예약이 아닌 공개 의견",
   "후원은 기능, 베타 접근, 지원 우선순위 또는 라이선스를 제공하지 않습니다.",
   "issues/new?template=beta-interest.yml",
   "https://github.com/StatPan/kakao-relay-beta/discussions/12",
   "공개 토론이므로 개인정보·토큰·메시지 내용은 쓰지 마세요.",
-  "LOCAL-ONLY PREVIEW",
+  "형식만 보기",
   "가상의 공개 데모입니다. 이 페이지는 실제 알림을 읽거나 전송하지 않으며",
   "입력값·URL·토큰을 받거나 저장하지 않습니다.",
   "data-preview-destination=\"telegram\"",
