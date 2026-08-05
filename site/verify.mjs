@@ -22,6 +22,8 @@ const required = [
   "가격 선택은 결제·예약이 아닌 공개 의견",
   "후원은 기능, 베타 접근, 지원 우선순위 또는 라이선스를 제공하지 않습니다.",
   "issues/new?template=beta-interest.yml",
+  "https://github.com/StatPan/kakao-relay-beta/discussions/12",
+  "공개 토론이므로 개인정보·토큰·메시지 내용은 쓰지 마세요.",
 ];
 for (const phrase of required) {
   if (!index.includes(phrase)) throw new Error(`Missing required public-boundary copy: ${phrase}`);
