@@ -58,6 +58,27 @@
         </div>
       </section>
 
+      <section class="section preview" aria-labelledby="preview-title">
+        <div class="section-heading">
+          <p class="eyebrow">LOCAL-ONLY PREVIEW</p>
+          <h2 id="preview-title">예시 형식으로 먼저 살펴보기.</h2>
+          <p>아래 예시는 가상의 공개 데모입니다. 이 페이지는 실제 알림을 읽거나 전송하지 않으며, 입력값·URL·토큰을 받거나 저장하지 않습니다.</p>
+        </div>
+        <div class="preview-shell" data-relay-preview>
+          <div class="preview-tabs" role="group" aria-label="가상 전달 목적지 형식">
+            <button class="preview-tab" type="button" aria-pressed="true" data-preview-destination="telegram">Telegram</button>
+            <button class="preview-tab" type="button" aria-pressed="false" data-preview-destination="discord">Discord</button>
+            <button class="preview-tab" type="button" aria-pressed="false" data-preview-destination="webhook">HTTPS webhook</button>
+          </div>
+          <div class="preview-output" id="preview-output" aria-live="polite">
+            <p class="preview-label">Telegram으로 보이는 가상 예시</p>
+            <pre><code>예시 대화
+가상의 작성자: 오늘 3시에 확인해 주세요.</code></pre>
+          </div>
+          <p class="preview-note">이 버튼은 화면의 가상 예시만 바꿉니다. 실제 카카오톡, Telegram, Discord, webhook 또는 외부 서버에 연결하지 않습니다.</p>
+        </div>
+      </section>
+
       <section class="section boundary" id="boundary" aria-labelledby="boundary-title">
         <div class="section-heading">
           <p class="eyebrow">CLEAR BOUNDARY</p>
