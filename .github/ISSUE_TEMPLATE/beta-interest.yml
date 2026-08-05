@@ -9,7 +9,7 @@ body:
         감사합니다. 이 양식은 공개 GitHub Issue로 작성됩니다.
 
         카카오 ID, 전화번호, 이메일, 기기 일련번호, 알림·대화 내용, webhook URL, 토큰, 비밀값은 절대 적지 마세요.
-        이 양식은 무료 베타 수요를 확인할 뿐, 설치 가능 시점·기능·지원·유료 혜택을 약속하지 않습니다.
+        이 양식은 무료 베타 수요와 비구속적 가격 반응을 확인할 뿐, 설치 가능 시점·기능·지원·유료 혜택을 약속하지 않습니다.
   - type: dropdown
     id: destination
     attributes:
@@ -19,6 +19,30 @@ body:
         - Telegram
         - HTTPS webhook
         - 아직 결정하지 않음
+    validations:
+      required: true
+  - type: dropdown
+    id: installation_willingness
+    attributes:
+      label: 수동 설치 의향
+      description: 서명된 APK가 준비된 경우에만 답해 주세요. 설치와 Android 알림 접근 권한 설정은 사용자가 직접 수행합니다.
+      options:
+        - 서명된 APK를 수동 설치하고 알림 접근 권한을 설정해 볼 의향이 있습니다.
+        - 설치 전에 더 알아보고 싶습니다.
+        - 지금은 설치 의향 없이 사용처만 탐색 중입니다.
+    validations:
+      required: true
+  - type: dropdown
+    id: price_reaction
+    attributes:
+      label: 월 가격에 대한 반응
+      description: 결제나 예약이 아닌 공개·비구속적 의견입니다. 현재 수금 경로와 유료 혜택은 없습니다.
+      options:
+        - 무료 테스트만 고려합니다.
+        - 월 1,000–2,900원
+        - 월 3,000–4,900원
+        - 월 5,000원 이상
+        - 아직 판단할 수 없습니다.
     validations:
       required: true
   - type: checkboxes
