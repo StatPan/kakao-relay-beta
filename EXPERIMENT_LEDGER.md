@@ -24,6 +24,24 @@ zero as proof that no demand exists.
 100,000 KRW of new spend. Any paid step requires a separately recorded
 expected cost, end date, and decision reason before it starts.
 
+## Automatic aggregate evidence and its storage guard
+
+[`Capture beta signal snapshot`](.github/workflows/beta-signal-snapshot.yml)
+runs daily at 09:15 KST and can also be started manually. It runs on the
+public repository's standard GitHub-hosted runner, for which
+[GitHub documents free usage in public repositories](https://docs.github.com/en/actions/reference/runners/github-hosted-runners).
+Its first manual receipt was
+[run 30990813379](https://github.com/StatPan/kakao-relay-beta/actions/runs/30990813379):
+one aggregate-only artifact, `beta-signal-snapshot`, was reported as 500 bytes
+and expires after 35 days.
+
+This is a capacity guard, not a claim that artifact storage is unlimited. The
+workflow retains one small JSON snapshot only; it must not raise retention,
+enable billing, or buy storage. If artifact storage or runner use would create
+new paid spend, stop that step before the charge and record a new decision.
+The artifact excludes participant names, titles, bodies, contact details,
+message data, endpoints, tokens, and secrets.
+
 ## Public state and revenue
 
 The public page, structured interest form, and public Q&A are live. They do
