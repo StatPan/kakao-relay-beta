@@ -12,6 +12,8 @@ beta access, support priority, or a licence.
 
 See the public [cost, measurement, and decision ledger](EXPERIMENT_LEDGER.md)
 for the fixed-asset boundary, incremental-spend record, and 30-day review rules.
+The [evidence review protocol](EVIDENCE_REVIEW_PROTOCOL.md) explains how public
+Interest Form responses are manually reduced to aggregate decision evidence.
 
 The disabled, provider-neutral support-link preparation and rollback procedure
 is in [SUPPORT_SETUP.md](SUPPORT_SETUP.md). It does not authorize collection.

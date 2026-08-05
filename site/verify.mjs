@@ -12,6 +12,7 @@ const sitemap = await readFile(new URL("sitemap.xml", root), "utf8");
 const interestForm = await readFile(new URL("../.github/ISSUE_TEMPLATE/beta-interest.yml", root), "utf8");
 const ledger = await readFile(new URL("../EXPERIMENT_LEDGER.md", root), "utf8");
 const supportSetup = await readFile(new URL("../SUPPORT_SETUP.md", root), "utf8");
+const evidenceReviewProtocol = await readFile(new URL("../EVIDENCE_REVIEW_PROTOCOL.md", root), "utf8");
 
 const publicUrl = "https://statpan.github.io/kakao-relay-beta/";
 const guideUrl = `${publicUrl}guide.html`;
@@ -130,6 +131,7 @@ for (const ledgerRequirement of [
   "`discovery_channel` is optional and uses closed choices only.",
   "not a requirement for\nvalid demand and not a tracking mechanism.",
   "Do not add free-text attribution,\ncookies, a tracking script, or analytics-account changes",
+  "[the evidence review protocol](EVIDENCE_REVIEW_PROTOCOL.md)",
 ]) {
   if (!ledger.includes(ledgerRequirement)) throw new Error(`Missing experiment-ledger requirement: ${ledgerRequirement}`);
 }
@@ -169,5 +171,21 @@ if (!attributionField.includes("required: false")) {
 }
 if (/type:\s*(input|textarea)|기타|직접 입력/.test(attributionField)) {
   throw new Error("Discovery attribution must not add free-text collection.");
+}
+for (const reviewRequirement of [
+  "This is a manual, privacy-preserving decision procedure.",
+  "using `state=all`",
+  "distinct GitHub author",
+  "`duplicate`, `missing_required_selection`, `spam_or_test`, or\n   `sensitive_data`",
+  "Do not quote, reproduce, or categorize the sensitive",
+  "one-time price range, monthly price range, and\n   optional `discovery_channel` value",
+  "There is no actual product use to count before the signed private-beta gate.",
+  "not an order,\n  reservation, payment promise, or entitlement.",
+  "at least 3 valid, distinct\n  structured-demand responses",
+  "never\n  unlocks a feature, beta access, support priority, licence, or installation.",
+]) {
+  if (!evidenceReviewProtocol.includes(reviewRequirement)) {
+    throw new Error(`Missing evidence-review boundary: ${reviewRequirement}`);
+  }
 }
 console.log(`verified ${resolve(root.pathname, "index.html")}`);
