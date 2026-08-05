@@ -1,0 +1,32 @@
+name: Free beta interest
+description: Public, privacy-minimising demand signal for the customer-owned Android relay.
+title: "[Beta interest]: "
+labels: ["type:story"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        감사합니다. 이 양식은 공개 GitHub Issue로 작성됩니다.
+
+        카카오 ID, 전화번호, 이메일, 기기 일련번호, 알림·대화 내용, webhook URL, 토큰, 비밀값은 절대 적지 마세요.
+        이 양식은 무료 베타 수요를 확인할 뿐, 설치 가능 시점·기능·지원·유료 혜택을 약속하지 않습니다.
+  - type: dropdown
+    id: destination
+    attributes:
+      label: 관심 있는 전달 목적지
+      options:
+        - Discord
+        - Telegram
+        - HTTPS webhook
+        - 아직 결정하지 않음
+    validations:
+      required: true
+  - type: checkboxes
+    id: acknowledgements
+    attributes:
+      label: 확인
+      options:
+        - label: 이 Issue가 공개됨을 이해하며, 개인 정보나 메시지·인증 정보를 작성하지 않았습니다.
+          required: true
+        - label: 이것은 카카오톡 공식 API나 봇이 아니며, 무료 베타 관심 신호임을 이해합니다.
+          required: true
