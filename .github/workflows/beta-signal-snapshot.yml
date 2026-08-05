@@ -1,0 +1,66 @@
+name: Capture beta signal snapshot
+
+on:
+  schedule:
+    # 09:15 KST (00:15 UTC): leave a daily, aggregate-only decision receipt.
+    - cron: "15 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: read
+  discussions: read
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Collect aggregate demand evidence
+        id: collect
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mkdir -p snapshot
+
+          interest_count="$(gh api --paginate "repos/${REPOSITORY}/issues?state=open&labels=type%3Astory&per_page=100" | jq -s 'add | map(select(.pull_request | not)) | length')"
+
+          discussion_status="available"
+          if discussion_json="$(gh api graphql -f query='query($owner:String!, $name:String!) { repository(owner:$owner, name:$name) { discussion(number:12) { comments { totalCount } } } }' -F owner="${REPOSITORY%/*}" -F name="${REPOSITORY#*/}" 2>/dev/null)"; then
+            discussion_comments="$(jq -r '.data.repository.discussion.comments.totalCount' <<<"${discussion_json}")"
+          else
+            discussion_status="unavailable"
+            discussion_comments="null"
+          fi
+
+          traffic_status="available"
+          if views_json="$(gh api "repos/${REPOSITORY}/traffic/views" 2>/dev/null)"; then
+            repo_views="$(jq -r '.count' <<<"${views_json}")"
+            repo_unique_viewers="$(jq -r '.uniques' <<<"${views_json}")"
+          else
+            traffic_status="unavailable"
+            repo_views="null"
+            repo_unique_viewers="null"
+          fi
+
+          jq -n \
+            --arg generated_at "$(date --utc +%Y-%m-%dT%H:%M:%SZ)" \
+            --arg repository "${REPOSITORY}" \
+            --argjson valid_structured_demand "${interest_count}" \
+            --arg discussion_status "${discussion_status}" \
+            --argjson public_qa_comment_count "${discussion_comments}" \
+            --arg traffic_status "${traffic_status}" \
+            --argjson repository_views "${repo_views}" \
+            --argjson repository_unique_viewers "${repo_unique_viewers}" \
+            '{generated_at:$generated_at, repository:$repository, measurement:{valid_structured_demand:{value:$valid_structured_demand, source:"open type:story issues", excludes:["authors", "titles", "bodies"]}, public_qa_comments:{value:$public_qa_comment_count, discussion_number:12, status:$discussion_status, excludes:["authors", "bodies"]}, repository_traffic:{views:$repository_views, unique_viewers:$repository_unique_viewers, status:$traffic_status, note:"Repository diagnostics only; not a claim about GitHub Pages or statpan.com page views."}}}' \
+            > snapshot/beta-signal-snapshot.json
+
+          jq -e '.measurement.valid_structured_demand.value >= 0 and (.measurement.public_qa_comments.status == "available" or .measurement.public_qa_comments.status == "unavailable") and (.measurement.repository_traffic.status == "available" or .measurement.repository_traffic.status == "unavailable")' snapshot/beta-signal-snapshot.json
+
+      - name: Retain aggregate snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: beta-signal-snapshot
+          path: snapshot/beta-signal-snapshot.json
+          retention-days: 35
