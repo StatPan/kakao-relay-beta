@@ -9,6 +9,7 @@ const script = await readFile(new URL("site.js", root), "utf8");
 const robots = await readFile(new URL("robots.txt", root), "utf8");
 const sitemap = await readFile(new URL("sitemap.xml", root), "utf8");
 const interestForm = await readFile(new URL("../.github/ISSUE_TEMPLATE/beta-interest.yml", root), "utf8");
+const ledger = await readFile(new URL("../EXPERIMENT_LEDGER.md", root), "utf8");
 
 const publicUrl = "https://statpan.github.io/kakao-relay-beta/";
 const guideUrl = `${publicUrl}guide.html`;
@@ -53,6 +54,16 @@ if (!sitemap.includes(`<loc>${publicUrl}</loc>`)) throw new Error("sitemap.xml m
 if (!sitemap.includes(`<loc>${guideUrl}</loc>`)) throw new Error("sitemap.xml must point at the public guide.");
 if (!config.includes('url: ""')) throw new Error("Support must remain disabled until a receiving account is configured.");
 if (!script.includes('url.protocol !== "https:"')) throw new Error("Support configuration must reject non-HTTPS links.");
+for (const ledgerRequirement of [
+  "Actual incremental service spend to date: 0 KRW.",
+  "Their recurring price is not measured or allocated here.",
+  "2026-09-04 KST",
+  "GitHub traffic is an acquisition diagnostic, not a claim about page visits.",
+  "At least 3 valid, distinct structured-demand submissions",
+  "Zero valid demand by 2026-09-04 KST",
+]) {
+  if (!ledger.includes(ledgerRequirement)) throw new Error(`Missing experiment-ledger requirement: ${ledgerRequirement}`);
+}
 for (const requiredFormBoundary of [
   "카카오 ID, 전화번호, 이메일",
   "webhook URL, 토큰, 비밀값",
