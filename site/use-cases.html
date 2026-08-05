@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="선택한 카카오톡 Android 알림을 내 Telegram, Discord 또는 HTTPS webhook으로 다시 보려는 경우를 위한 Kakao Relay Beta 공개 수요 실험 안내입니다." />
+    <meta name="robots" content="index,follow" />
+    <meta property="og:title" content="Kakao Relay Beta 사용처 | 어떤 경우에 맞나요?" />
+    <meta property="og:description" content="사용자 소유 Android 기기의 선택 알림을 사용자 관리 목적지로 단방향 전달하려는 수요만 확인합니다." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://statpan.github.io/kakao-relay-beta/use-cases.html" />
+    <title>Kakao Relay Beta 사용처 | 어떤 경우에 맞나요?</title>
+    <link rel="canonical" href="https://statpan.github.io/kakao-relay-beta/use-cases.html" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="page-use-cases">
+    <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+    <header class="site-header">
+      <a class="wordmark" href="./" aria-label="Kakao Relay Beta 홈">Kakao Relay Beta</a>
+      <a class="text-link" href="https://github.com/StatPan/kakao-relay-beta/issues/new?template=beta-interest.yml">베타 관심 등록</a>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="use-cases-title">
+        <p class="eyebrow">USE-CASE GUIDE</p>
+        <h1 id="use-cases-title">알림을 다른 곳에서<br />다시 보고 싶은 경우.</h1>
+        <p class="hero-copy">Kakao Relay Beta는 사용자 소유 Android 기기에서 선택한 카카오톡 알림을 사용자가 관리하는 목적지로 단방향 전달하려는 수요를 확인합니다. 지금은 설치 파일이나 연결 기능을 제공하지 않는 공개 실험입니다.</p>
+      </section>
+
+      <section class="section" aria-labelledby="fit-title">
+        <div class="section-heading">
+          <p class="eyebrow">WHEN IT FITS</p>
+          <h2 id="fit-title">다음과 같은 경우에만 검토할 만합니다.</h2>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <span class="card-number" aria-hidden="true">01</span>
+            <h3>내 알림을 내 도구에서</h3>
+            <p>내 Android 기기의 선택 알림을 내가 관리하는 Telegram이나 Discord에서 다시 확인하고 싶을 때입니다.</p>
+          </article>
+          <article class="card">
+            <span class="card-number" aria-hidden="true">02</span>
+            <h3>제한된 자동화 연결</h3>
+            <p>내가 소유·관리하는 HTTPS webhook으로, 필요한 알림 이벤트만 이어 보고 싶을 때입니다.</p>
+          </article>
+          <article class="card">
+            <span class="card-number" aria-hidden="true">03</span>
+            <h3>명시적 선택이 가능한 경우</h3>
+            <p>Android 알림 접근 권한, 전달 대화, 전달 목적지를 기기 소유자가 직접 정할 수 있을 때입니다.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section boundary" aria-labelledby="not-fit-title">
+        <div class="section-heading">
+          <p class="eyebrow">WHEN IT DOES NOT FIT</p>
+          <h2 id="not-fit-title">다음 기대라면 이 실험에 맞지 않습니다.</h2>
+        </div>
+        <div class="boundary-grid">
+          <article>
+            <h3>기능 기대</h3>
+            <ul>
+              <li>카카오톡 공식 API 또는 공식 봇을 원합니다.</li>
+              <li>원격 답장, 보조 전송, 대화방 자동 조작을 원합니다.</li>
+              <li>전체 대화 기록, 파일·이미지, 백업·아카이브를 원합니다.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>권한과 목적지</h3>
+            <ul>
+              <li>기기 소유자가 알림 접근과 전달 대상을 직접 통제할 수 없습니다.</li>
+              <li>다른 사람의 대화 내용을 알림이나 동의 없이 전달하려 합니다.</li>
+              <li>목적지의 보관·공유 방식을 통제하거나 설명할 수 없습니다.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="status-title">
+        <div class="section-heading">
+          <p class="eyebrow">PUBLIC TEST STATUS</p>
+          <h2 id="status-title">지금은 연결을 받지 않습니다.</h2>
+        </div>
+        <p>이 페이지와 관심 양식은 어떤 카카오톡 계정, Android 기기, 알림 내용, Telegram·Discord 자격 증명, webhook URL도 받거나 저장하지 않습니다. 공개 양식은 수요·수동 설치 의향·비구속적 가격 반응을 확인할 뿐이며, 설치·결제·예약·이용 권한을 만들지 않습니다.</p>
+      </section>
+
+      <section class="section beta" aria-labelledby="next-title">
+        <div>
+          <p class="eyebrow">NEXT STEP</p>
+          <h2 id="next-title">범위가 맞다면, 공개 의견만 남겨 주세요.</h2>
+          <p>공개 Issue Form이므로 개인 연락처, 조직명, 메시지 내용, endpoint, 토큰, 비밀값을 쓰지 마세요. 이 실험이 맞지 않다면 아무 정보도 남기지 않아도 됩니다.</p>
+        </div>
+        <div class="beta-actions">
+          <a class="button button-primary" href="https://github.com/StatPan/kakao-relay-beta/issues/new?template=beta-interest.yml">공개 베타 관심 등록 열기<span aria-hidden="true"> ↗</span></a>
+          <p><a class="text-link" href="./guide.html">작동 범위 전체 읽기 →</a></p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Kakao Relay Beta</span>
+      <a href="./">공개 베타 페이지로 돌아가기</a>
+    </footer>
+  </body>
+</html>
