@@ -121,6 +121,11 @@ for (const ledgerRequirement of [
   "GitHub traffic is an acquisition diagnostic, not a claim about page visits.",
   "At least 3 valid, distinct structured-demand submissions",
   "Zero valid demand by 2026-09-04 KST",
+  "## Owned-channel qualification",
+  "min-ty commercial blog",
+  "Excluded now",
+  "No link, post, CTA, tracking, advertising, or affiliate placement",
+  "does not call the sampled result market demand or market\nabsence",
 ]) {
   if (!ledger.includes(ledgerRequirement)) throw new Error(`Missing experiment-ledger requirement: ${ledgerRequirement}`);
 }
