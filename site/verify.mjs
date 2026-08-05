@@ -23,7 +23,7 @@ const required = [
   "카카오톡 공식 API 또는 공식 봇인 척하지 않습니다.",
   "카카오 ID, 기기 일련번호, 알림·대화 내용",
   "공개 베타에서 원격·보조 전송 기능을 제공하지 않습니다.",
-  "공개 가능한 사용처 범주, 수동 설치 의향, 비구속적 가격 범위만 골라 주세요.",
+  "공개 가능한 사용처 범주, 수동 설치 의향, 확정 아닌 가격대만 골라 주세요.",
   "가격 선택은 결제·예약이 아닌 공개 의견",
   "후원은 기능, 베타 접근, 지원 우선순위 또는 라이선스를 제공하지 않습니다.",
   "issues/new?template=beta-interest.yml",
@@ -58,7 +58,7 @@ for (const guideBoundary of [
   "카카오톡 공식 API 또는 공식 봇",
   "공식 통합이나 원격 답장을 약속하지 않습니다.",
   "아직 설치 파일을 약속하지 않습니다.",
-  "공개 가능한 사용처 범주, 수동 설치 의향, 비구속적 가격 범위만 선택합니다.",
+  "공개 가능한 사용처 범주, 수동 설치 의향, 확정 아닌 가격대만 선택합니다.",
 ]) {
   if (!guide.includes(guideBoundary)) throw new Error(`Missing guide boundary: ${guideBoundary}`);
 }
@@ -74,7 +74,7 @@ for (const metadata of [
   if (!useCases.includes(metadata)) throw new Error(`Missing use-case discovery metadata: ${metadata}`);
 }
 for (const useCaseBoundary of [
-  "사용자 소유 Android 기기에서 선택한 카카오톡 알림을 사용자가 관리하는 목적지로 단방향 전달",
+  "내 Android 기기에서 고른 카카오톡 알림을 내가 관리하는 곳으로 한 방향 전달",
   "지금은 설치 파일이나 연결 기능을 제공하지 않는 공개 실험입니다.",
   "카카오톡 공식 API 또는 공식 봇을 원합니다.",
   "원격 답장, 보조 전송, 대화방 자동 조작을 원합니다.",
@@ -148,7 +148,7 @@ for (const requiredFormBoundary of [
   "선택한 알림을 팀 Discord에서 함께 보기",
   "내 HTTPS webhook으로 제한된 자동화 연결",
   "아직 구체적인 사용처를 정하지 않음",
-  "결제나 예약이 아닌 공개·비구속적 의견입니다.",
+  "결제나 예약이 아닌, 확정되지 않은 공개 의견입니다.",
   "지불 방식과 가격에 대한 반응",
   "일회성 구매 5,000–9,900원",
   "반복 제공이 실제로 생기는 경우",
