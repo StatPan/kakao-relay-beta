@@ -19,7 +19,7 @@ const required = [
   "카카오톡 공식 API 또는 공식 봇인 척하지 않습니다.",
   "카카오 ID, 기기 일련번호, 알림·대화 내용",
   "원격·보조 전송은 제공하지 않습니다.",
-  "수동 설치 의향, 비구속적 가격 범위만 골라 알려 주세요.",
+  "공개 가능한 사용처 범주, 수동 설치 의향, 비구속적 가격 범위만 골라 알려 주세요.",
   "가격 선택은 결제·예약이 아닌 공개 의견",
   "후원은 기능, 베타 접근, 지원 우선순위 또는 라이선스를 제공하지 않습니다.",
   "issues/new?template=beta-interest.yml",
@@ -53,7 +53,7 @@ for (const guideBoundary of [
   "카카오톡 공식 API 또는 공식 봇",
   "공식 통합이나 원격 답장을 약속하지 않습니다.",
   "아직 설치 파일을 약속하지 않습니다.",
-  "가격 선택은 결제나 예약이 아닙니다.",
+  "공개 가능한 사용처 범주, 수동 설치 의향, 비구속적 가격 범위만 선택합니다.",
 ]) {
   if (!guide.includes(guideBoundary)) throw new Error(`Missing guide boundary: ${guideBoundary}`);
 }
@@ -89,6 +89,13 @@ for (const requiredFormBoundary of [
   "공개 GitHub Issue",
   "id: installation_willingness",
   "id: price_reaction",
+  "id: intended_use",
+  "생각 중인 사용처 범주",
+  "대화방 이름, 알림·메시지 내용, 조직명, URL, 연락처는 작성하지 않습니다.",
+  "개인 Android의 선택 알림을 내 도구에서 다시 보기",
+  "선택한 알림을 팀 Discord에서 함께 보기",
+  "내 HTTPS webhook으로 제한된 자동화 연결",
+  "아직 구체적인 사용처를 정하지 않음",
   "결제나 예약이 아닌 공개·비구속적 의견입니다.",
 ]) {
   if (!interestForm.includes(requiredFormBoundary)) {
