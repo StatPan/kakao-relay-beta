@@ -4,6 +4,7 @@ import { resolve } from "node:path";
 const root = new URL("./", import.meta.url);
 const index = await readFile(new URL("index.html", root), "utf8");
 const guide = await readFile(new URL("guide.html", root), "utf8");
+const useCases = await readFile(new URL("use-cases.html", root), "utf8");
 const config = await readFile(new URL("support-config.js", root), "utf8");
 const script = await readFile(new URL("site.js", root), "utf8");
 const robots = await readFile(new URL("robots.txt", root), "utf8");
@@ -13,6 +14,7 @@ const ledger = await readFile(new URL("../EXPERIMENT_LEDGER.md", root), "utf8");
 
 const publicUrl = "https://statpan.github.io/kakao-relay-beta/";
 const guideUrl = `${publicUrl}guide.html`;
+const useCasesUrl = `${publicUrl}use-cases.html`;
 
 const required = [
   "무료 베타 관심 등록",
@@ -39,6 +41,7 @@ for (const phrase of required) {
 }
 if (index.includes("살아 있는 알림에만 답장")) throw new Error("Public beta must not promise live-notification replies.");
 if (!index.includes('href="./guide.html"')) throw new Error("Landing page must link to the public-boundary guide.");
+if (!index.includes('href="./use-cases.html"')) throw new Error("Landing page must link to the public use-case guide.");
 for (const metadata of [
   `<link rel="canonical" href="${publicUrl}" />`,
   '<meta name="robots" content="index,follow" />',
@@ -60,6 +63,26 @@ for (const guideBoundary of [
 if (!robots.includes(`Sitemap: ${publicUrl}sitemap.xml`)) throw new Error("robots.txt must point at the public sitemap.");
 if (!sitemap.includes(`<loc>${publicUrl}</loc>`)) throw new Error("sitemap.xml must point at the public page.");
 if (!sitemap.includes(`<loc>${guideUrl}</loc>`)) throw new Error("sitemap.xml must point at the public guide.");
+if (!sitemap.includes(`<loc>${useCasesUrl}</loc>`)) throw new Error("sitemap.xml must point at the public use-case guide.");
+for (const metadata of [
+  `<link rel="canonical" href="${useCasesUrl}" />`,
+  '<meta name="robots" content="index,follow" />',
+  `<meta property="og:url" content="${useCasesUrl}" />`,
+]) {
+  if (!useCases.includes(metadata)) throw new Error(`Missing use-case discovery metadata: ${metadata}`);
+}
+for (const useCaseBoundary of [
+  "사용자 소유 Android 기기에서 선택한 카카오톡 알림을 사용자가 관리하는 목적지로 단방향 전달",
+  "지금은 설치 파일이나 연결 기능을 제공하지 않는 공개 실험입니다.",
+  "카카오톡 공식 API 또는 공식 봇을 원합니다.",
+  "원격 답장, 보조 전송, 대화방 자동 조작을 원합니다.",
+  "다른 사람의 대화 내용을 알림이나 동의 없이 전달하려 합니다.",
+  "이 페이지와 관심 양식은 어떤 카카오톡 계정, Android 기기, 알림 내용",
+  "설치·결제·예약·이용 권한을 만들지 않습니다.",
+  "개인 연락처, 조직명, 메시지 내용, endpoint, 토큰, 비밀값을 쓰지 마세요.",
+]) {
+  if (!useCases.includes(useCaseBoundary)) throw new Error(`Missing use-case safety boundary: ${useCaseBoundary}`);
+}
 if (!config.includes('url: ""')) throw new Error("Support must remain disabled until a receiving account is configured.");
 if (!script.includes('url.protocol !== "https:"')) throw new Error("Support configuration must reject non-HTTPS links.");
 for (const previewRequirement of [
