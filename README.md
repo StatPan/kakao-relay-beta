@@ -12,4 +12,7 @@ beta access, support priority, or a licence.
 
 See the public [cost, measurement, and decision ledger](EXPERIMENT_LEDGER.md)
 for the fixed-asset boundary, incremental-spend record, and 30-day review rules.
+
+The disabled, provider-neutral support-link preparation and rollback procedure
+is in [SUPPORT_SETUP.md](SUPPORT_SETUP.md). It does not authorize collection.
 Privacy-first demand test for a customer-owned Android Kakao notification relay

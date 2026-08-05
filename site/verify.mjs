@@ -11,6 +11,7 @@ const robots = await readFile(new URL("robots.txt", root), "utf8");
 const sitemap = await readFile(new URL("sitemap.xml", root), "utf8");
 const interestForm = await readFile(new URL("../.github/ISSUE_TEMPLATE/beta-interest.yml", root), "utf8");
 const ledger = await readFile(new URL("../EXPERIMENT_LEDGER.md", root), "utf8");
+const supportSetup = await readFile(new URL("../SUPPORT_SETUP.md", root), "utf8");
 
 const publicUrl = "https://statpan.github.io/kakao-relay-beta/";
 const guideUrl = `${publicUrl}guide.html`;
@@ -85,6 +86,23 @@ for (const useCaseBoundary of [
 }
 if (!config.includes('url: ""')) throw new Error("Support must remain disabled until a receiving account is configured.");
 if (!script.includes('url.protocol !== "https:"')) throw new Error("Support configuration must reject non-HTTPS links.");
+for (const supportRequirement of [
+  "**Current state: disabled.**",
+  "GitHub Sponsors",
+  "South Korea",
+  "Buy Me a Coffee",
+  "does not list South Korea",
+  "The exact destination is an HTTPS public listing page",
+  "support is voluntary and never unlocks a",
+  "feature, beta access, support priority, licence, installation",
+  "## Disable or roll back",
+  "Revenue remains **0 KRW** until the human operator has a real provider",
+  "transaction receipt. The canonical evidence is the operator's private provider",
+]) {
+  if (!supportSetup.includes(supportRequirement)) {
+    throw new Error(`Missing support activation boundary: ${supportRequirement}`);
+  }
+}
 for (const previewRequirement of [
   "const examples = {",
   "notification.preview",
