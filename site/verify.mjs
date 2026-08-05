@@ -25,6 +25,14 @@ const required = [
   "issues/new?template=beta-interest.yml",
   "https://github.com/StatPan/kakao-relay-beta/discussions/12",
   "공개 토론이므로 개인정보·토큰·메시지 내용은 쓰지 마세요.",
+  "LOCAL-ONLY PREVIEW",
+  "가상의 공개 데모입니다. 이 페이지는 실제 알림을 읽거나 전송하지 않으며",
+  "입력값·URL·토큰을 받거나 저장하지 않습니다.",
+  "data-preview-destination=\"telegram\"",
+  "data-preview-destination=\"discord\"",
+  "data-preview-destination=\"webhook\"",
+  "aria-pressed=\"true\"",
+  "실제 카카오톡, Telegram, Discord, webhook 또는 외부 서버에 연결하지 않습니다.",
 ];
 for (const phrase of required) {
   if (!index.includes(phrase)) throw new Error(`Missing required public-boundary copy: ${phrase}`);
@@ -54,6 +62,17 @@ if (!sitemap.includes(`<loc>${publicUrl}</loc>`)) throw new Error("sitemap.xml m
 if (!sitemap.includes(`<loc>${guideUrl}</loc>`)) throw new Error("sitemap.xml must point at the public guide.");
 if (!config.includes('url: ""')) throw new Error("Support must remain disabled until a receiving account is configured.");
 if (!script.includes('url.protocol !== "https:"')) throw new Error("Support configuration must reject non-HTTPS links.");
+for (const previewRequirement of [
+  "const examples = {",
+  "notification.preview",
+  "button.addEventListener(\"click\"",
+  "code.textContent = example.body",
+]) {
+  if (!script.includes(previewRequirement)) throw new Error(`Missing preview behavior: ${previewRequirement}`);
+}
+for (const forbiddenPreviewCapability of ["fetch(", "XMLHttpRequest", "localStorage", "sessionStorage", "sendBeacon", ".value"]) {
+  if (script.includes(forbiddenPreviewCapability)) throw new Error(`Preview must not collect, persist, or transmit data: ${forbiddenPreviewCapability}`);
+}
 for (const ledgerRequirement of [
   "Actual incremental service spend to date: 0 KRW.",
   "Their recurring price is not measured or allocated here.",
