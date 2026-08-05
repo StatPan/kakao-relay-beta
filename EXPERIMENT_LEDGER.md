@@ -58,7 +58,7 @@ real receiving path exists and a voluntary payment is actually received.
 | Signal | Canonical source | Valid when | Do not count when |
 | --- | --- | --- | --- |
 | Open structured-demand candidate | Daily aggregate snapshot of public GitHub Issue Form entries labelled `type:story` | An open non-PR Issue currently has the label | Treating this count as valid demand, a count of distinct people, or a review of form content |
-| Valid structured demand | Public GitHub Issue Form labelled `type:story`, manually reviewed at the decision point | A distinct public author submits all required destination, signed-APK willingness, and non-binding price selections without sensitive data | Empty, duplicate, spam, test, or sensitive-data-containing submission |
+| Valid structured demand | Public GitHub Issue Form labelled `type:story`, manually reviewed at the decision point | A distinct public author submits all required destination, signed-APK willingness, and non-binding payment-model and price selections without sensitive data | Empty, duplicate, spam, test, or sensitive-data-containing submission |
 | Product question or use case | [Public Q&A](https://github.com/StatPan/kakao-relay-beta/discussions/12) | A non-seed participant asks a scope/use-case question without personal or credential data | The seeded owner post, a duplicate, or a post containing personal or secret data |
 | Repository discovery | GitHub traffic API | Reported separately as repository views/clones and referrers | Treating it as a GitHub Pages or `statpan.com` page-view count |
 | Revenue | Receiving-account transaction receipt | A real voluntary support or paid-pilot payment is received after a lawful receiving path is configured | A price-range selection, pledge, or discussion comment |
@@ -87,12 +87,16 @@ reason category in the final evidence; do not copy participant names, Issue
 titles or bodies, contact details, message data, endpoints, tokens, or secrets
 into the ledger.
 
+The form separates one-time purchase ranges from monthly ranges. This does not
+offer either model or imply that a recurring service will exist: a monthly
+selection is only a non-binding response to a hypothetical repeated service.
+
 ## Decision rules
 
 | Evidence by the review date | Action |
 | --- | --- |
 | At least 3 valid, distinct structured-demand submissions, including at least 1 person willing to manually install a signed APK | Start the already-scoped private-beta readiness work: dedicated signing, a private artifact, and physical-device smoke. Do not distribute the existing debug APK. |
-| A valid respondent chooses a paid range | Record it as a non-binding price signal only. Do not collect payment or promise a benefit until a receiving path and lawful pilot terms are separately prepared. |
+| A valid respondent chooses a paid one-time or monthly range | Record its payment model and range as a non-binding price signal only. Do not collect payment or promise a benefit until a receiving path and lawful pilot terms are separately prepared. |
 | Some valid demand but the signed-beta threshold is not met | Keep the public test free and report destination, installation, and price patterns. Do not add paid infrastructure merely to force a result. |
 | Zero valid demand by 2026-09-04 KST | Stop this experiment without new spend, publish the final aggregate evidence, and select a different workspace candidate rather than infer broad market rejection from zero traffic. |
 | Incremental spend would exceed 100,000 KRW per month | Stop the paid step before purchase; the cost guardrail takes precedence over growth activity. |

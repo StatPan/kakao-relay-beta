@@ -97,6 +97,9 @@ for (const requiredFormBoundary of [
   "내 HTTPS webhook으로 제한된 자동화 연결",
   "아직 구체적인 사용처를 정하지 않음",
   "결제나 예약이 아닌 공개·비구속적 의견입니다.",
+  "지불 방식과 가격에 대한 반응",
+  "일회성 구매 5,000–9,900원",
+  "반복 제공이 실제로 생기는 경우",
 ]) {
   if (!interestForm.includes(requiredFormBoundary)) {
     throw new Error(`Missing interest-form privacy or demand boundary: ${requiredFormBoundary}`);
