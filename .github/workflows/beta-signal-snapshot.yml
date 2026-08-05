@@ -24,7 +24,7 @@ jobs:
           set -euo pipefail
           mkdir -p snapshot
 
-          interest_count="$(gh api --paginate "repos/${REPOSITORY}/issues?state=open&labels=type%3Astory&per_page=100" | jq -s 'add | map(select(.pull_request | not)) | length')"
+          interest_candidate_count="$(gh api --paginate "repos/${REPOSITORY}/issues?state=open&labels=type%3Astory&per_page=100" | jq -s 'add | map(select(.pull_request | not)) | length')"
 
           discussion_status="available"
           if discussion_json="$(gh api graphql -f query='query($owner:String!, $name:String!) { repository(owner:$owner, name:$name) { discussion(number:12) { comments { totalCount } } } }' -F owner="${REPOSITORY%/*}" -F name="${REPOSITORY#*/}" 2>/dev/null)"; then
@@ -47,16 +47,16 @@ jobs:
           jq -n \
             --arg generated_at "$(date --utc +%Y-%m-%dT%H:%M:%SZ)" \
             --arg repository "${REPOSITORY}" \
-            --argjson valid_structured_demand "${interest_count}" \
+            --argjson structured_demand_candidates "${interest_candidate_count}" \
             --arg discussion_status "${discussion_status}" \
             --argjson public_qa_comment_count "${discussion_comments}" \
             --arg traffic_status "${traffic_status}" \
             --argjson repository_views "${repo_views}" \
             --argjson repository_unique_viewers "${repo_unique_viewers}" \
-            '{generated_at:$generated_at, repository:$repository, measurement:{valid_structured_demand:{value:$valid_structured_demand, source:"open type:story issues", excludes:["authors", "titles", "bodies"]}, public_qa_comments:{value:$public_qa_comment_count, discussion_number:12, status:$discussion_status, excludes:["authors", "bodies"]}, repository_traffic:{views:$repository_views, unique_viewers:$repository_unique_viewers, status:$traffic_status, note:"Repository diagnostics only; not a claim about GitHub Pages or statpan.com page views."}}}' \
+            '{generated_at:$generated_at, repository:$repository, measurement:{structured_demand_candidates:{value:$structured_demand_candidates, source:"open type:story issues", status:"candidate_count_only", note:"This aggregate does not validate distinct authors, required selections, or sensitive-data exclusions; manual review is required before a submission counts as valid demand.", excludes:["authors", "titles", "bodies"]}, public_qa_comments:{value:$public_qa_comment_count, discussion_number:12, status:$discussion_status, excludes:["authors", "bodies"]}, repository_traffic:{views:$repository_views, unique_viewers:$repository_unique_viewers, status:$traffic_status, note:"Repository diagnostics only; not a claim about GitHub Pages or statpan.com page views."}}}' \
             > snapshot/beta-signal-snapshot.json
 
-          jq -e '.measurement.valid_structured_demand.value >= 0 and (.measurement.public_qa_comments.status == "available" or .measurement.public_qa_comments.status == "unavailable") and (.measurement.repository_traffic.status == "available" or .measurement.repository_traffic.status == "unavailable")' snapshot/beta-signal-snapshot.json
+          jq -e '.measurement.structured_demand_candidates.value >= 0 and .measurement.structured_demand_candidates.status == "candidate_count_only" and (.measurement.public_qa_comments.status == "available" or .measurement.public_qa_comments.status == "unavailable") and (.measurement.repository_traffic.status == "available" or .measurement.repository_traffic.status == "unavailable")' snapshot/beta-signal-snapshot.json
 
       - name: Retain aggregate snapshot
         uses: actions/upload-artifact@v4
