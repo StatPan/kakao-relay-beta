@@ -34,6 +34,19 @@ body:
     validations:
       required: true
   - type: dropdown
+    id: discovery_channel
+    attributes:
+      label: 이 공개 실험을 어디에서 발견하셨나요? (선택)
+      description: 집계용 선택 항목입니다. 공개 Issue에 구체적인 사람, 검색어, URL, 연락처를 추가하지 마세요.
+      options:
+        - StatPan 포트폴리오 또는 경계 설명 글
+        - GitHub 저장소 또는 GitHub 검색
+        - 웹 검색
+        - 직접 공유받음
+        - 기억나지 않음
+    validations:
+      required: false
+  - type: dropdown
     id: installation_willingness
     attributes:
       label: 수동 설치 의향

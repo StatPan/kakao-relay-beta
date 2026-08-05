@@ -126,6 +126,10 @@ for (const ledgerRequirement of [
   "Excluded now",
   "No link, post, CTA, tracking, advertising, or affiliate placement",
   "does not call the sampled result market demand or market\nabsence",
+  "| Discovery attribution | Optional closed-choice `discovery_channel` selection",
+  "`discovery_channel` is optional and uses closed choices only.",
+  "not a requirement for\nvalid demand and not a tracking mechanism.",
+  "Do not add free-text attribution,\ncookies, a tracking script, or analytics-account changes",
 ]) {
   if (!ledger.includes(ledgerRequirement)) throw new Error(`Missing experiment-ledger requirement: ${ledgerRequirement}`);
 }
@@ -146,9 +150,24 @@ for (const requiredFormBoundary of [
   "지불 방식과 가격에 대한 반응",
   "일회성 구매 5,000–9,900원",
   "반복 제공이 실제로 생기는 경우",
+  "id: discovery_channel",
+  "이 공개 실험을 어디에서 발견하셨나요? (선택)",
+  "집계용 선택 항목입니다.",
+  "StatPan 포트폴리오 또는 경계 설명 글",
+  "GitHub 저장소 또는 GitHub 검색",
+  "기억나지 않음",
 ]) {
   if (!interestForm.includes(requiredFormBoundary)) {
     throw new Error(`Missing interest-form privacy or demand boundary: ${requiredFormBoundary}`);
   }
+}
+const attributionMatch = interestForm.match(/  - type: dropdown\n    id: discovery_channel\n[\s\S]*?(?=\n  - type:|$)/);
+if (!attributionMatch) throw new Error("Discovery attribution must remain a dropdown.");
+const attributionField = attributionMatch[0];
+if (!attributionField.includes("required: false")) {
+  throw new Error("Discovery attribution must remain optional.");
+}
+if (/type:\s*(input|textarea)|기타|직접 입력/.test(attributionField)) {
+  throw new Error("Discovery attribution must not add free-text collection.");
 }
 console.log(`verified ${resolve(root.pathname, "index.html")}`);
