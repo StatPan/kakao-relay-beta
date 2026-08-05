@@ -22,6 +22,18 @@ body:
     validations:
       required: true
   - type: dropdown
+    id: intended_use
+    attributes:
+      label: 생각 중인 사용처 범주
+      description: 공개 가능한 범주만 고르세요. 대화방 이름, 알림·메시지 내용, 조직명, URL, 연락처는 작성하지 않습니다.
+      options:
+        - 개인 Android의 선택 알림을 내 도구에서 다시 보기
+        - 선택한 알림을 팀 Discord에서 함께 보기
+        - 내 HTTPS webhook으로 제한된 자동화 연결
+        - 아직 구체적인 사용처를 정하지 않음
+    validations:
+      required: true
+  - type: dropdown
     id: installation_willingness
     attributes:
       label: 수동 설치 의향
